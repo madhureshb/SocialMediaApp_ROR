@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_115005) do
+ActiveRecord::Schema.define(version: 2021_09_13_140535) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,8 +20,21 @@ ActiveRecord::Schema.define(version: 2021_09_12_115005) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "friend_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_friendships_on_account_id"
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+  end
+
+  add_foreign_key "friendships", "accounts"
+  add_foreign_key "friendships", "accounts", column: "friend_id"
 end
