@@ -1,10 +1,15 @@
 class AccountsController < ApplicationController
+   
+    def friend_result
+        @pending_requests = current_account.pending_requests
+        @friend_requests = current_account.recieved_requests
+    end
 
     def my_friends
         @friends = current_account.friends
     end
 
-    def search
+    def search        
         if params[:friend].present?
             @friend = params[:friend]
             if @friend
@@ -13,13 +18,13 @@ class AccountsController < ApplicationController
               end
             else
               respond_to do |format|
-                flash.now[:alert] = "Couldn't find user"
+                flash.now[:notice] = "Couldn't find user"
                 format.js { render partial: 'accounts/friend_result' }
               end
             end    
           else
             respond_to do |format|
-              flash.now[:alert] = "Please enter a friend name or email to search"
+              flash.now[:notice] = "Please enter a friend name or email to search"
               format.js { render partial: 'accounts/friend_result' }
             end  
         end

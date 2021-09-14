@@ -6,7 +6,7 @@
           <th scope="col">Email</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
-          <th scope="col">Actions</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -15,9 +15,8 @@
             <td><%= friend.email %></td>
             <td><%= friend.first_name %></td>
             <td><%= friend.last_name %></td>
-            #<h2 class="center pb-3 text-dark border-bottom">Sent Friend Requests</h2> 
-            <td><%= link_to 'Sent Friend Requests', '#', method: :delete, data: {confirm: 'Are you sure?'},
-                                          class: 'btn btn-sm btn-warning' %></td>
+            </br>
+            <h2 class="center pb-3 text-dark border-bottom">Friends List</h2>   
           </tr>
         <% end %>
       </tbody>

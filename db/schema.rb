@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_09_13_140535) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_09_13_140535) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.integer "friend_id"
+    t.bigint "account_id", null: false
+    t.bigint "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_friendships_on_account_id"
