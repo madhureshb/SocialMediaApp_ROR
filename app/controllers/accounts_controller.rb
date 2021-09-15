@@ -11,20 +11,21 @@ class AccountsController < ApplicationController
 
     def search        
         if params[:friend].present?
-            @friend = params[:friend]
-            if @friend
+            @friends = Account.search(params[:friend])
+            @friends = current_account.except_current_account(@friends)
+            if @friends
               respond_to do |format|
                 format.js { render partial: 'accounts/friend_result' }
               end
             else
               respond_to do |format|
-                flash.now[:notice] = "Couldn't find user"
+                flash.now[:alert] = "Couldn't find user"
                 format.js { render partial: 'accounts/friend_result' }
               end
             end    
           else
             respond_to do |format|
-              flash.now[:notice] = "Please enter a friend name or email to search"
+              flash.now[:alert] = "Please enter a friend name or email to search"
               format.js { render partial: 'accounts/friend_result' }
             end  
         end

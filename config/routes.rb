@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'my_friends', to: 'accounts#my_friends'
   get 'search_friend', to: 'accounts#search'
+  resources :friendships, only: [:create, :destroy]
 end
