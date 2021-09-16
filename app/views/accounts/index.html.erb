@@ -1,0 +1,22 @@
+<div class="container top-pad">
+    <div class="row">
+        <div class="col-9">
+            <h3>Posts</h3>
+            </br>
+            <div class="card card-header results-block">    
+            <table class="colmd-12">
+            <tbody> 
+                <% @posts.each do |post| %>
+            <tr>
+            <td><strong> <%= Account.user_name(post.account_id) %></strong></td>
+            <td><%= post.description %></td>
+            </tr>
+               
+                <% end %>
+                       
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,5 +1,15 @@
 class AccountsController < ApplicationController
    
+    def index
+      #dashboard feed
+      @posts = Post.active
+    end
+
+    def show
+      #user_profile
+    end
+
+
     def friend_result
         @pending_requests = current_account.pending_requests
         @friend_requests = current_account.recieved_requests

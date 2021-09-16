@@ -1,6 +1,7 @@
 class Account < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :posts
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +11,13 @@ class Account < ApplicationRecord
   def full_name
     return "#{first_name} #{last_name}" if first_name || last_name
     "Anonymous"
+  end
+
+  def self.user_name(id)
+    first_name = find(id).first_name
+    last_name = find(id).last_name
+    return first_name +" "+ last_name + " : "
+    
   end
 
   def self.search(param)
