@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
     def index
       #dashboard feed
       @posts = Post.active
+      @comment =Comment.new
     end
 
     def show

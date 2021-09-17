@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+    before_action :authenticate_account!
+    
     def new
         @post = Post.new
         #@account_id = Account.find(params[:account_id])

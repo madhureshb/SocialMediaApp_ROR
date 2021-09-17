@@ -1,10 +1,10 @@
 <%= form_for @post, html: { multipart: true } do |f| %>
     <div class="row">
         <div class="col-9">
-            <%= f.text_field :description, class: "form-control" %>
+            <%= f.label :description %>
+            <%= f.text_area :description, class: "form-control" %>
             </br>
             <%= f.submit "Save Post", class: "btn btn-success" %>
-            </br>
             <%= f.hidden_field :account_id, class: "form-control", :value =>  @post.account_id %>
         </div>
 

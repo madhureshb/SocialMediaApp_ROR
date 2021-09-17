@@ -1,5 +1,10 @@
 class FriendshipsController < ApplicationController
   def create
+    
+  end
+
+  def send_request
+    
   end
 
   def destroy

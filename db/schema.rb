@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_042528) do
+ActiveRecord::Schema.define(version: 2021_09_17_124525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,24 +29,49 @@ ActiveRecord::Schema.define(version: 2021_09_16_042528) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "post_id", null: false
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_comments_on_account_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
     t.index ["account_id"], name: "index_friendships_on_account_id"
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id", "post_id"], name: "index_likes_on_account_id_and_post_id", unique: true
+    t.index ["account_id"], name: "index_likes_on_account_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "description"
+    t.boolean "active", default: true, null: false
     t.bigint "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "active", default: true
     t.index ["account_id"], name: "index_posts_on_account_id"
   end
 
+  add_foreign_key "comments", "accounts"
+  add_foreign_key "comments", "posts"
   add_foreign_key "friendships", "accounts"
   add_foreign_key "friendships", "accounts", column: "friend_id"
+  add_foreign_key "likes", "accounts"
+  add_foreign_key "likes", "posts"
 end
