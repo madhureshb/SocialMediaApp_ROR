@@ -1,53 +1,38 @@
-<div class="container top-pad">
-    <div class="row">
-        <div class="col-13">
-            <h3>Posts</h3>
-            </br>
-            <div class="card card-header results-block">    
-                <table class="colmd-13">
-                    <tbody> 
-                        <% @posts.each do |post| %>
-                            <tr>
-                            <td><strong> <%= Account.user_name(post.account_id) %></strong></td>
-                            <td><%= post.description %></td>                      
-                            <td>                            
-                            <% like = current_account.likes.find_by(post: post) %>
-                            <% if like.nil? %>
-                                <%= link_to 'Like', likes_path(post), method: :post,
-                                class: 'btn btn-sm btn-primary ' %> 
-                            <% else %>
-                                <%= link_to 'UnLike', like_path(like), method: :delete,
-                                class: 'btn btn-sm btn-primary' %> 
-                            <% end %>
-                            </td>
-                            
-                            <div>
-                            <td class="fry-pad">
-                                <%= post.likes.count %> Likes
-                            </td>
-                            </div>
-                        
-                            <td>
-                            <div class="comment-box left-pad">
-                                <%= form_for @comment do |f| %>
-                                    <%= f.hidden_field :post_id, value: post.id %> 
-                                    <%= f.text_field :comment, placeholder: "Add comment here"%> 
-                                    <%= f.submit "Post", class: "btn btn-success" %>                 
-                                <% end %>    
-                            </div>
-                            </td>
-                           
-                            <td><%= render "posts/comments", post: post %></td>
-                            <div class="post-actions left-pad">
-                                
-                            </div>
-                            </tr>
-                        <% end %>  
-                    </tbody>        
-                </table
-            </div>
-        </div>
+<h3>Posts</h3>
+</br>
+<div class="container">
+
+            <% @posts.each do |post| %>
+            <div class="card border-success mb-3" style="max-width: 18rem;">
+           
+                <div class="card-header bg-transparent border-success"><strong> <%= Account.user_name(post.account_id) %></strong></div>
+                <div class="card-body text-success">
+                    <h5 class="card-title"><%= image_tag post.main_image, style: "width:100%" %></h5>
+                    <p class="card-text"><%= post.description %></p>
+                </div>
+                <div class="card-footer bg-transparent border-success"><% like = current_account.likes.find_by(post: post) %>
+                <% if like.nil? %>
+                    <%= link_to 'Like', likes_path(post), method: :post,
+                    class: 'btn btn-sm btn-primary ' %> 
+                <% else %>
+                    <%= link_to 'UnLike', like_path(like), method: :delete,
+                    class: 'btn btn-sm btn-primary' %> 
+                <% end %>
+                <td>
+                    <%= post.likes.count %> Likes
+                </td>
+                </div>
+                
+                <div class="card-footer bg-transparent border-success"><%= form_for @comment do |f| %>
+                    <%= f.hidden_field :post_id, value: post.id %> 
+                    <%= f.text_field :comment, placeholder: "Add comment here"%> 
+                    <%= f.submit "Post", class: "btn btn-success" %> 
+                    <p class="card-text"><%= render "posts/comments", post: post %></p>                
+                    <% end %>
+            
+                    </div>
+            
     </div>
+    </br>
+    <% end %>  
 </div>
-
-

@@ -1,6 +1,13 @@
 class FriendshipsController < ApplicationController
   def create
-    
+    friend = Account.find(params[:friend])
+    current_account.friendships.build(friend_id: friend.id)
+    if current_account.save
+        flash[:notice] = "Following Friend"
+    else
+        flash[:alert] = "There was something wrong with the tracking request"
+    end
+    redirect_to my_friends_path
   end
 
   def send_request

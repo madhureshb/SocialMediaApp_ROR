@@ -10,10 +10,12 @@
           <tr>
             <td><strong>Name: </strong> <%= friend.full_name %></td>
             <td><strong>Email: </strong> <%= friend.email %></td>
-            <td><strong>Actions: </strong> 
+            <td><strong>Actions: </strong>  <%= link_to 'View Profile', account_path(friend) ,
+            class: "btn btn-sm btn-success" %>
             <% if current_account.not_friends_with?(friend.id) %>
-               <%= link_to 'Send Request', friendships_path(friend_id: friend.id, user_id: current_account.id),
+            <%= link_to 'Send Request', friendships_path(friend: friend),
                                 class: "btn btn-sm btn-success", method: :post %>
+              
             <% else %>
               <span class="badge badge-secondary">
                 You are friends

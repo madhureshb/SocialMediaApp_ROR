@@ -1,0 +1,25 @@
+<h2>User Details</h2>
+
+
+
+<div class="card card-header results-block">
+    <table class="colmd-12">
+        <tbody> 
+            <tr>
+            <td><strong>Name: </strong> <%= @account.full_name %></td>
+            <td><strong>Email: </strong> <%= @account.email %></td>
+            <td>
+            <% if current_account.not_friends_with?(@account.id) %>
+            <%= link_to 'Send Request', friendships_path(friend: @account),
+                                class: "btn btn-sm btn-success", method: :post %>
+                
+            <% else %>
+                <span class="badge badge-secondary">
+                You are friends
+                </span>
+            <% end %>  
+            </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

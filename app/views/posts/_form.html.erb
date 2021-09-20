@@ -1,4 +1,15 @@
 <%= form_for @post, html: { multipart: true } do |f| %>
+
+    <div class="form-group">
+        <%= f.label :main_image %>
+            <div class="row">
+            <div class="col-3">
+                <%= f.file_field :main_image, class: "form-control-file" %>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-9">
             <%= f.label :description %>
