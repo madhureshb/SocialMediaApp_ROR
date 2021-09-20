@@ -1,23 +1,25 @@
 class FriendshipsController < ApplicationController
-  def create
-    friend = Account.find(params[:friend])
-    current_account.friendships.build(friend_id: friend.id)
-    if current_account.save
-        flash[:notice] = "Following Friend"
-    else
-        flash[:alert] = "There was something wrong with the tracking request"
-    end
+
+  def create  
+    @friend = current_account.friendships.create(account_id: params[:account_id], friend_id: params[:friend_id], status: 0)
     redirect_to my_friends_path
   end
 
-  def send_request
-    
+  def update
+    @friend = Friendship.find_by(id: params[:id])
+    if @friend.present?
+      @friend.status = params[:status].to_i
+      if @friend.save
+        redirect_to my_friends_path
+      end
+    end
   end
 
   def destroy
-    friendship = current_account.friendships.where(friend_id: params[:id]).first
+    friendship = Friendship.find_by(id: params[:id])
     friendship.destroy
     flash[:notice] = "Stopped following"
     redirect_to my_friends_path
   end
+
 end

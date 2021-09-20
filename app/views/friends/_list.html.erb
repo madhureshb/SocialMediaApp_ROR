@@ -6,21 +6,56 @@
           <th scope="col">Email</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
-          
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
       </br>
       <h2 class="center pb-3 text-dark border-bottom">Friends List</h2>   
-        <% @friends.each do |friend| %>
-          <tr>
-            <td><%= friend.email %></td>
-            <td><%= friend.first_name %></td>
-            <td><%= friend.last_name %></td>
-            <td><%= link_to 'View Profile', account_path(friend),
+      <% Friendship.where(friend_id: current_account.id, status: 1).each do |friend| %>
+        <% friend = Account.find_by(id: friend.account_id) %>
+        <tr>
+          <td><%= friend.email %></td>
+          <td><%= friend.first_name %></td>
+          <td><%= friend.last_name %></td>
+          <td><%= link_to 'View Profile', account_path(friend),
                     class: 'btn btn-sm btn-success' %>
-                <%= link_to 'Stop following', friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?'},
-                    class: 'btn btn-sm btn-warning' %>   
+          </td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-9">  
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+      </br>
+      <h2 class="center pb-3 text-dark border-bottom">Pending Requests</h2>   
+        <%  Friendship.where(friend_id: current_account.id, status: 0).each do |friend| %>
+          <tr>
+            <td><%= Account.find_by(id: friend.account_id).try(:email) %></td>
+            <td><%= Account.find_by(id: friend.account_id).try(:first_name) %></td>
+            <td><%= Account.find_by(id: friend.account_id).try(:last_name) %></td>
+            <td><%= link_to 'Accept', friendship_path(id: friend.id, status: 1),method: :put,
+                    class: 'btn btn-sm btn-success' %>
+                <%= link_to 'Reject', friendship_path(id: friend.id, status: 2),method: :delete, data: {confirm: 'Are you sure?'},
+                    class: 'btn btn-sm btn-danger' %>   
             
           </tr>
         <% end %>

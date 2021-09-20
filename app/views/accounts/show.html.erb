@@ -12,6 +12,7 @@
             <% if current_account.not_friends_with?(@account.id) %>
             <%= link_to 'Send Request', friendships_path(friend: @account),
                                 class: "btn btn-sm btn-success", method: :post %>
+            
                 
             <% else %>
                 <span class="badge badge-secondary">
