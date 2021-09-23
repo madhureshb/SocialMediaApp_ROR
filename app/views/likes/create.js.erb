@@ -1,0 +1,3 @@
+document.querySelector("#likes_<%= @post.id %>").innerHTML = '<%= j (render :partial => "accounts/like_result", :locals => { :current_account => current_account, :post => @post }) %>'  
+
+

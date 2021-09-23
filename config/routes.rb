@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :accounts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
+  root 'accounts#index'
 
   get 'dashboard', to: 'accounts#index'
   get 'my_friends', to: 'accounts#my_friends'

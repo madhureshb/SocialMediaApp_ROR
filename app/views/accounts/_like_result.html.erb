@@ -1,0 +1,12 @@
+<div class="card-footer bg-transparent border-success"><% like = current_account.likes.find_by(post: post) %>
+    <% if like.nil? %>
+        <%= link_to 'Like', likes_path(post_id: post.id), remote: true, method: :post,
+        class: 'btn btn-sm btn-primary ' %> 
+    <% else %>
+        <%= link_to 'UnLike', like_path(like), remote: true, method: :delete,
+        class: 'btn btn-sm btn-primary' %> 
+    <% end %>
+    <td>
+        <%= post.likes.count %> Likes
+    </td>
+</div>

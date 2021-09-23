@@ -1,6 +1,9 @@
-<% post.comments.each do |comment| %>
-    <div class="comment " >
-        <strong><%= comment.account.full_name %></strong>
-        <%= comment.comment %>
-    </div>
-<% end %>    
+<p class="card-text">
+    <% post.comments.each do |comment| %>
+        <div>
+            <strong><%= comment.account.full_name %></strong>
+            <%= comment.comment %>
+        </div>
+
+    <% end %>    
+</p>  

@@ -1,14 +1,10 @@
 class CommentsController < ApplicationController
 
     def create
+        @post = Post.find(comment_params[:post_id])
         @comment = Comment.new(comment_params)
         @comment.account_id = current_account.id if account_signed_in? 
-   
-        if @comment.save
-            redirect_to dashboard_path, flash: { success: "Comment was created successfully! "}
-        else
-            redirect_to dashboard_path, flash: { danger: "Post was not saved! "}
-        end
+        @comment.save
     end
 
     private

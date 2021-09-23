@@ -1,19 +1,14 @@
 class LikesController < ApplicationController
     def create
-        
-        @like = current_account.likes.new(post_id: params[:format])
-        if !@like.save
-            # flash[:alert] = "You have already like the post"
-        end
-
-        redirect_to  dashboard_path
+        @post = Post.find(params[:post_id])
+        @like = current_account.likes.new(post_id: params[:post_id])
+        @like.save
     end
 
     def destroy
         @like = current_account.likes.find(params[:id])
-        post = @like.post
-        @like.destroy
-        redirect_to dashboard_path
+        @post = @like.post
+        @like.destroy 
     end
 
     private

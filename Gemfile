@@ -25,6 +25,9 @@ gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem "font-awesome-rails"
 
+gem "mini_magick"
+
+gem 'ckeditor'
 
 
 # Use Active Storage variant
