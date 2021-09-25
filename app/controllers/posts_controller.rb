@@ -17,12 +17,23 @@ class PostsController < ApplicationController
     end
 
     def show
+        @posts = Post.find(params[:id])
+        @related_posts = @posts.find_related_tags
     end
+
+    def tagged
+        if params[:tag].present?
+          @posts = Post.tagged_with(params[:tag])
+        else
+          @posts = Post.all
+        end
+    end
+
 
     private
 
     def post_params
-        params.require(:post).permit(:description, :id, :main_image)
+        params.require(:post).permit(:description, :id, :main_image, :tag_list)
     end
 
 end

@@ -1,16 +1,13 @@
 <%= form_for @post, html: { multipart: true } do |f| %>
 
     <div class="form-group">
-        <%= f.label :main_image %>
             <div class="row">
             <div class="col-3">
                 <%= f.file_field :main_image, class: "form-control-file" %>
             </div>
         </div>
     </div>
-
-
-    
+        
     <head>
         <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     </head>
@@ -18,7 +15,10 @@
     <div class="row">
         <div class="col-9">
             <%= f.label :description %>      
-            <%= f.cktext_area :description, class: "form-control" %>           
+            <%= f.cktext_area :description, class: "form-control" %>
+            </br>    
+            <%= f.label :Tags %>  
+            <%= f.text_field :tag_list %>                 
             </br>
             <%= f.submit "Save Post", class: "btn btn-success" %>
             <%= f.hidden_field :account_id, class: "form-control", :value =>  @post.account_id %>

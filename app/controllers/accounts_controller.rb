@@ -9,6 +9,7 @@ class AccountsController < ApplicationController
     def show
       #user_profile
       @account = Account.find(params[:id])
+     
     end
 
 

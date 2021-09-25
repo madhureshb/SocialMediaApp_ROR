@@ -29,6 +29,8 @@ gem "mini_magick"
 
 gem 'ckeditor'
 
+gem 'acts-as-taggable-on', '~> 8.0'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

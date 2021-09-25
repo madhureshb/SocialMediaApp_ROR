@@ -10,6 +10,9 @@
             <div class="card-body text-success">
                 <h5 class="card-title"><%= image_tag post.main_image, style: "width:100%" %></h5>
                 <p class="card-text"><%= post.description.html_safe %></p>
+                <p><% post.tag_list.each do |tag| %>
+                    <%= link_to tag, tagged_path(tag: tag) %>
+                <% end %></p>
             </div>
             
             <div id="likes_<%= post.id %>">

@@ -6,8 +6,8 @@ class Post < ApplicationRecord
     has_one_attached :main_image
 
     scope :active, -> { where active: true }
-    validates_length_of :description, :maximum => 150
-
-
-
+    validates_length_of :description, :maximum => 150  
+    acts_as_taggable_on :tags
+    ActsAsTaggableOn.force_lowercase = true
+    ActsAsTaggableOn.delimiter = ','
 end

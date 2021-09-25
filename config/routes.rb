@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'accounts#index'
   get 'my_friends', to: 'accounts#my_friends'
   get 'search_friend', to: 'accounts#search'
+  get 'tagged', to: "posts#tagged", as: :tagged
 
   resources :posts, only: [:new,:create,:show]
   resources :friendships, only: [:create, :destroy, :update]

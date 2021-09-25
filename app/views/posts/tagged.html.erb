@@ -1,0 +1,15 @@
+</br>
+<div class="container">
+    <% @posts.each do |post|  %>
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success"><strong> <%= Account.user_name(post.account_id) %></strong></div>
+            <div class="card-body text-success">
+                <h5 class="card-title"><%= image_tag post.main_image, style: "width:100%" %></h5>
+                <p class="card-text"><%= post.description.html_safe %></p>                
+            </div>
+                <div id="likes_<%= post.id %>">
+                <%= render partial: "accounts/like_result", locals: {current_account: current_account, post: post} %>
+            </div>      
+        </div>    
+    <% end %> 
+</div>
