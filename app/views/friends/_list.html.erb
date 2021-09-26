@@ -20,6 +20,8 @@
           <td><%= friend.last_name %></td>
           <td><%= link_to 'View Profile', account_path(friend),
                     class: 'btn btn-sm btn-success' %>
+              <%= link_to 'Chat', chat_path,
+                      class: 'btn btn-sm btn-primary' %>                     
           </td>
         </tr>
       <% end %>
@@ -41,7 +43,6 @@
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Actions</th>
-          
         </tr>
       </thead>
       <tbody>
@@ -55,8 +56,7 @@
             <td><%= link_to 'Accept', friendship_path(id: friend.id, status: 1),method: :put,
                     class: 'btn btn-sm btn-success' %>
                 <%= link_to 'Reject', friendship_path(id: friend.id, status: 2),method: :delete, data: {confirm: 'Are you sure?'},
-                    class: 'btn btn-sm btn-danger' %>   
-            
+                    class: 'btn btn-sm btn-danger' %>     
           </tr>
         <% end %>
       </tbody>

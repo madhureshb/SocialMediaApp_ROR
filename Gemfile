@@ -31,6 +31,7 @@ gem 'ckeditor'
 
 gem 'acts-as-taggable-on', '~> 8.0'
 
+gem 'hirb'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

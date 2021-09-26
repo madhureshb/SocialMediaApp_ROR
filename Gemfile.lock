@@ -96,6 +96,7 @@ GEM
       railties (>= 3.2, < 7)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    hirb (0.7.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -225,6 +226,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views (~> 1.0)
   font-awesome-rails
+  hirb
   jbuilder (~> 2.7)
   mini_magick
   pg

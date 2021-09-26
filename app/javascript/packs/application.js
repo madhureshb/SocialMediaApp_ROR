@@ -14,4 +14,8 @@ ActiveStorage.start()
 
 
 import "bootstrap"
+require("jquery")
 
+$(document).on('turbolinks:load', function () {
+   
+})
