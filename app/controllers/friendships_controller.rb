@@ -1,7 +1,12 @@
 class FriendshipsController < ApplicationController
 
   def create  
-    @friend = current_account.friendships.create(account_id: params[:account_id], friend_id: params[:friend_id], status: 0)
+    @friend = current_account.friendships.create(account_id: params[:user_id], friend_id: params[:friend_id], status: 0)
+    friend_account = Account.find_by(id: params[:friend_id])
+
+    if friend_account.present?
+      friend_account.friendships.create(account_id: friend_account.id, friend_id: params[:user_id], status: 1)
+    end
     redirect_to my_friends_path
   end
 

@@ -12,16 +12,8 @@ class AccountsController < ApplicationController
      
     end
 
-
-    
-    # def friend_result
-    #     @pending_requests = current_account.pending_requests
-    #     @friend_requests = current_account.recieved_requests
-    # end
-
     def my_friends
         @friends = current_account.friends
-        #@friends = Friendship.where(friend_id: current_account, status: 0)
     end
 
     def search        

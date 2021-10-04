@@ -3,6 +3,7 @@ class Account < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :posts
   has_many :likes
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

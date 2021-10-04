@@ -33,6 +33,8 @@ gem 'acts-as-taggable-on', '~> 8.0'
 
 gem 'hirb'
 
+gem 'client_side_validations'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -45,7 +47,7 @@ group :development, :test do
 end
 
 group :development do
-
+  gem 'pry'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.4'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

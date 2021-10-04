@@ -1,4 +1,4 @@
-document.querySelector("#comments_<%= @post.id %>").innerHTML = '<%= j (render :partial => "posts/comments", :locals => { :current_account => current_account, :post => @post }) %>'  
+document.querySelector("#comments_<%= @post.id %>").innerHTML = '<%= j (render :partial => "posts/comments", :locals => {:post => @post }) %>'  
 
 
 $("form").trigger("reset");

@@ -1,8 +1,8 @@
 <p class="card-text">
-    <% post.comments.each do |comment| %>
+    <% post.comments.each do |c| %>
         <div>
-            <strong><%= comment.account.full_name %></strong>
-            <%= comment.comment %>
+            <strong><%= c.account.full_name %></strong>
+            <%= c.comment %>
         </div>
 
     <% end %>    
